@@ -1,0 +1,23 @@
+// ransomNote
+
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+      if(ransomNote.length()==0) return true;
+      
+      
+        int [] alphbet=new int[26];
+     for(int i=0;i<magazine.length();i++){
+         alphbet[magazine.charAt(i)-'a']++;
+     }
+
+    for(int i=0;i<ransomNote.length();i++){
+       int temp= --alphbet[ransomNote.charAt(i)-'a'];
+        if(temp<0) return false;
+        
+    }
+    
+    return true;
+}
+
+
+}
