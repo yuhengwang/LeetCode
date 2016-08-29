@@ -21,3 +21,30 @@ public class Solution {
 
 
 }
+
+// valid anagram
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+       if(s.length()==0&&t.length()==0) return true;
+      
+      
+        int [] alphbet=new int[26];
+     for(int i=0;i<s.length();i++){
+         alphbet[s.charAt(i)-'a']++;
+     }
+
+    for(int i=0;i<t.length();i++){
+       --alphbet[t.charAt(i)-'a'];
+        
+        
+    }
+    
+    for(int i=0;i<26;i++){
+        if(alphbet[i]!=0)
+        return false;
+    }
+    
+    return true;
+}
+        
+}
