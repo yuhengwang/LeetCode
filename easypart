@@ -48,3 +48,27 @@ public class Solution {
 }
         
 }
+// Find unique character in a String
+public class Solution {
+    public int firstUniqChar(String s) {
+       int [] alphbet=new int [26];
+        
+        for(int i=0;i<s.length();i++){
+            
+            alphbet[s.charAt(i)-'a']++;
+        }
+        
+        int index=s.length();
+        for(int i=0;i<26;i++){
+            if(alphbet[i]==1){
+                char word=(char)(i+'a');
+                int temp=s.indexOf(word);
+                if(temp<index){
+                    index=temp;
+                }
+            }
+        }
+        
+        return index==s.length()?-1:index;
+    }
+}
