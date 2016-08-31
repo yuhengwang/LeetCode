@@ -120,7 +120,7 @@ public class Solution {
         int one=0;
         int two=0;
         while(two<nums2.length&&one<nums1.length)
-        if(nums1[one]>nums2[two]){
+        if(nums1[one]>nums2[two]){     //if..else..if
             two++;
         }
         else {if(nums1[one]<nums2[two]){
