@@ -26,3 +26,28 @@ public class Solution {
     
     
 }
+
+//using XOR
+public class Solution {
+    
+    
+    public char findTheDifference(String s, String t) {
+        
+        char c = t.charAt(0);
+        
+      for ( int i=1;i < t.length();i++){
+          
+          c^=t.charAt(i);
+          c^= s.charAt(i-1);
+          
+          
+          
+          
+      }
+     
+     return c;
+     
+    }
+    
+    
+}
