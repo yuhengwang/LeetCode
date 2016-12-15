@@ -51,3 +51,36 @@ public class Solution {
        return max;
     }
 }
+
+//BFS
+public class Solution {
+    public int maxDepth(TreeNode root) {
+       //BFS
+       Queue <TreeNode> queue = new LinkedList <TreeNode> ();
+       if(root == null) return 0;
+       int depth = 0;
+       queue.add(root);
+       while(!queue.isEmpty()){
+           
+           int size = queue.size();
+           
+           for(int i=0;i<size;i++){
+               
+           root = queue.poll();    
+           
+           if(root.left != null)
+           queue.add(root.left);
+           
+           if(root.right != null)
+           queue.add(root.right);
+           
+           
+           }
+           depth++;
+           
+       }
+       
+       return depth;
+       
+    }
+}
