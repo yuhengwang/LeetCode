@@ -19,7 +19,7 @@ public class Solution {
 }
 
 
-//
+// use of index to record...
 public class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         
