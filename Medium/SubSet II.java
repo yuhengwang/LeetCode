@@ -14,12 +14,12 @@ public class Solution {
    
         res.add(new ArrayList<Integer>(current));
         for(int i = start; i < nums.length; i++) {
-            current.add(nums[i]);
+            
             if(i > start && nums[i] == nums[i-1]) {
-            current.remove(current.size()-1);
-        
+            
                 continue;
             }
+            current.add(nums[i]);
             helper(nums,current,res,i+1);
             current.remove(current.size()-1);
     
