@@ -51,3 +51,44 @@ public class Solution {
     }
    
 }
+
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: Postorder in ArrayList which contains node values.
+     */
+     
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        // write your code here
+        // non - recursive
+        Stack<TreeNode> stack = new Stack<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        TreeNode curr = root;
+        TreeNode prev = null;
+        if (root == null) {
+            return res;
+        }
+        stack.push(root);
+        while (!stack.empty()) {
+            curr = stack.peek(); // only get the value but not remove
+            if (prev == null || prev.left == curr || prev.right == curr) {
+                if (curr.left != null) {
+                    stack.push(curr.left);
+                } else if (curr.right != null) {
+                    stack.push(curr.right);
+                }
+            } else if (curr.left == prev) {
+                if (curr.right != null) {
+                    stack.push(curr.right);
+                }
+            } else {  //leaf node or right child back to parent node
+                res.add(curr.val);
+                stack.pop();
+            }
+            prev = curr;
+        }
+        return res;
+        
+    }
+   
+}
