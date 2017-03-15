@@ -1,0 +1,28 @@
+public class Solution {
+    /**
+     * @param nums an array of integer
+     * @param target an integer
+     * @return an integer
+     */
+    public int twoSum5(int[] nums, int target) {
+        // Write your code here
+        Arrays.sort(nums);
+        int start = 0;
+        int end = nums.length - 1;
+        int result = 0;
+        while (start < end) {
+            int residue = target - nums[start];
+            if (residue >= nums[end]) {
+                result += end - start;
+                start++;
+                end = nums.length - 1;
+            } else {
+                end--;
+            }
+            
+        }
+        return result;
+       
+        
+    }
+}
