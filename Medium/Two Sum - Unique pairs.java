@@ -27,7 +27,7 @@ public class Solution {
         return num;
     }
 }
-// time complexity O(nlogn), space complexity o(n)
+// time complexity O(nlogn), space complexity o(1)
 public class Solution {
     /**
      * @param nums an array of integer
