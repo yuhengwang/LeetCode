@@ -71,3 +71,52 @@ public class Solution {
         
     }
 }
+// shorter and smarter one
+/**
+ * Definition for Undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     List<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { 
+ *         label = x;
+ *         neighbors = new ArrayList<UndirectedGraphNode>(); 
+ *     }
+ * };
+ */
+public class Solution {
+    /**
+     * @param graph a list of Undirected graph node
+     * @param s, t two Undirected graph nodes
+     * @return an integer
+     */
+    public int sixDegrees(List<UndirectedGraphNode> graph,
+                          UndirectedGraphNode s,
+                          UndirectedGraphNode t) {
+        // Write your code here
+        if (s.label == t.label) {
+            return 0;
+        }
+        Queue<UndirectedGraphNode> queue = new LinkedList<>();
+        HashMap<UndirectedGraphNode, Integer> visited = new HashMap<>();
+        queue.offer(s);
+        visited.put(s, 0);
+        while (!queue.isEmpty()) {
+            UndirectedGraphNode cur = queue.poll();
+            int step = visited.get(cur);
+            for (int i = 0; i < cur.neighbors.size(); i++) {
+                if (visited.containsKey(cur.neighbors.get(i))) {
+                    continue;
+                }
+                if (cur.neighbors.get(i).label == t.label) {
+                    return step + 1;
+                }
+                visited.put(cur.neighbors.get(i), step + 1);
+                queue.offer(cur.neighbors.get(i));
+                
+            }
+        }
+        return -1;
+        
+        
+    }
+}
