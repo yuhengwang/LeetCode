@@ -52,3 +52,46 @@ public class Solution {
         return true;
     }
 }
+
+// make use of 0- n-1 courses attribute
+public class Solution {
+    /**
+     * @param numCourses a total of n courses
+     * @param prerequisites a list of prerequisite pairs
+     * @return true if can finish all courses or false
+     */
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        // Write your code here
+      int[] indegrees = new int[numCourses];
+      List [] edges = new ArrayList[numCourses];
+      for (int i = 0; i < numCourses; i++) {
+          edges[i] = new ArrayList<Integer>();
+      }
+      for (int i = 0; i < prerequisites.length; i++) {
+          indegrees[prerequisites[i][0]]++;
+          edges[prerequisites[i][1]].add(prerequisites[i][0]);
+      }
+        int num = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < indegrees.length; i++) {
+            if (indegrees[i] == 0) {
+                queue.offer(i);
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            num++;
+            int size = edges[cur].size();
+            for (int i = 0; i < size; i++) {
+                int sub = (int)edges[cur].get(i);
+                indegrees[sub]--;
+                if (indegrees[sub] == 0) {
+                    queue.offer(sub);
+                }
+            }
+        }
+        return num == numCourses;
+       
+    }
+}
