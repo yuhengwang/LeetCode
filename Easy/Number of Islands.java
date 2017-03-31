@@ -59,3 +59,79 @@ public class Solution {
         }
     }
 }
+//union find
+public class Solution {
+    /**
+     * @param grid a boolean 2D matrix
+     * @return an integer
+     */
+     
+    class UnionFind {
+        private int[] father = null;
+        private int count;
+        UnionFind (int n) {
+            father = new int[n];
+            for (int i = 0; i < n; i++) {
+                father[i] = i;
+            }
+        }
+        public int find(int x) {
+            int parent = father[x];
+            while (parent != father[parent]) {
+                parent = father[parent];
+            }
+            return parent;
+        }
+
+        public void union(int x, int y) {
+            int fa_x = find(x);
+            int fa_y = find(y);
+            if (fa_x != fa_y) {
+                father[fa_x] = fa_y;
+                count--;
+            }
+        }
+        public void setCount(int count) {
+            this.count = count;
+        }
+        public int query() {
+            return count;
+        }
+        
+    }
+    public int numIslands(boolean[][] grid) {
+        // Write your code here
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        int total = 0;
+        UnionFind uf = new UnionFind(m * n);
+        for (int i = 0; i < grid.length; i++)
+            for (int j = 0; j < grid[0].length; j++)
+                if(grid[i][j])
+                    total++;
+        uf.setCount(total);
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j]) {
+                    if (i > 0 && grid[i - 1][j]) {
+                        uf.union(i * n + j, (i - 1) * n + j);
+                    }
+                    if (i < m - 1 && grid[i + 1][j]) {
+                        uf.union(i * n + j, (i + 1) * n + j);
+                    }
+                    if (j > 0 && grid[i][j - 1]) {
+                        uf.union(i * n + j, i * n + j - 1);
+                    }
+                    if (j < n - 1 && grid[i][j + 1]) {
+                        uf.union(i * n + j, i * n + j + 1);
+                    }
+                }
+            }
+        } 
+        return uf.query();
+        
+    }
+}
