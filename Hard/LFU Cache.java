@@ -1,3 +1,4 @@
+// TreeSet remove need logn time complexity. use id to record the recentness.
 public class LFUCache {
      class Node implements Comparable<Node>{
          int key;
@@ -67,4 +68,59 @@ public class LFUCache {
         queue.add(newNode);
     }
 }
+//val to record key and value, counts to record key and appear times, and lists is to record the insertion order under same appear times
+public class LFUCache {
+    HashMap<Integer, Integer> val = new HashMap<>();
+    HashMap<Integer, Integer> counts = new HashMap<>();
+    HashMap<Integer, LinkedHashSet<Integer>> lists = new HashMap<>();
+    int capacity;
+    int min = -1;
+    // @param capacity, an integer
+    public LFUCache(int capacity) {
+        // Write your code here
+        this.capacity = capacity;
+        lists.put(1, new LinkedHashSet<Integer>());
+    }
 
+    // @param key, an integer
+    // @param value, an integer
+    // @return nothing
+    public void set(int key, int value) {
+        // Write your code here
+        if (val.containsKey(key)) {
+            get(key);
+            val.put(key, value);
+            return;
+        }
+        if (val.size() == capacity) {
+            int delete = lists.get(min).iterator().next();
+            val.remove(delete);
+            lists.get(min).remove(delete);
+        }
+        val.put(key, value);
+        min = 1;
+        counts.put(key, 1);
+        lists.get(1).add(key);
+    }
+
+    public int get(int key) {
+        // Write your code here
+        
+        if (val.containsKey(key)) {
+            int count = counts.get(key);
+            lists.get(count).remove(key);
+            if (count == min && lists.get(count).size() == 0) {
+                min++;
+            }
+            count++;
+            counts.put(key, count);
+            if (lists.get(count) == null) {
+                lists.put(count, new LinkedHashSet<Integer>());
+            }
+            lists.get(count).add(key);
+            return val.get(key);
+        } else {
+            return -1;
+        }
+    }
+}
