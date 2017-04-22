@@ -50,3 +50,50 @@ public class Solution {
         return t;
     }
 }
+
+
+// with memory
+public class Solution {
+    class T {
+        float min_val, max_val;
+        String min_s, max_s;
+    }
+    public String optimalDivision(int[] nums) {
+        HashMap<String, T> memory = new HashMap<>();
+        T res = optimal(nums, 0, nums.length - 1, memory);
+        return res.max_s;
+    }
+    public T optimal(int[] nums, int start, int end, HashMap<String, T> memory) {
+        String key = start + " " + end;
+        if (memory.containsKey(key)) {
+            return memory.get(key);
+        }
+        T t = new T();
+        if (start == end) {
+            t.min_val = nums[start];
+            t.max_val = nums[end];
+            t.min_s = "" + nums[start];
+            t.max_s = "" + nums[end];
+            return t;
+        }
+        t.min_val = Float.MAX_VALUE;
+        t.max_val = Float.MIN_VALUE;
+        for (int i = start; i < end; i++) {
+            T left = optimal(nums, start, i, memory);
+            T right = optimal(nums, i + 1, end, memory);
+            if (t.min_val > left.min_val / right.max_val) {
+                t.min_val = left.min_val / right.max_val;
+                t.min_s = left.min_s + "/"  + (i + 1 != end ? "(" : "") +  right.max_s + (i + 1 != end ? ")" : "");
+             
+            }
+            if (t.max_val < left.max_val / right.min_val) {
+                t.max_val = left.max_val / right.min_val;
+                t.max_s =  left.max_s + "/"  + (i + 1 != end ? "(" : "") + right.min_s + (i + 1 != end ? ")" : "");
+              
+            }
+            
+        }
+        memory.put(key, t);
+        return t;
+    }
+}
