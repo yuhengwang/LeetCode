@@ -12,3 +12,41 @@ public class Solution {
          return nums.length > 2 ? sb.append(")").toString() : sb.toString();
     }
 }
+
+//brute force, but without memory, repetive calculate same thing, not effetive
+public class Solution {
+    class T {
+        float min_val, max_val;
+        String min_s, max_s;
+    }
+    public String optimalDivision(int[] nums) {
+        T res = optimal(nums, 0, nums.length - 1);
+        return res.max_s;
+    }
+    public T optimal(int[] nums, int start, int end) {
+        T t = new T();
+        if (start == end) {
+            t.min_val = nums[start];
+            t.max_val = nums[end];
+            t.min_s = "" + nums[start];
+            t.max_s = "" + nums[end];
+            return t;
+        }
+        t.min_val = Float.MAX_VALUE;
+        t.max_val = Float.MIN_VALUE;
+        for (int i = start; i < end; i++) {
+            T left = optimal(nums, start, i);
+            T right = optimal(nums, i + 1, end);
+            if (t.min_val > left.min_val / right.max_val) {
+                t.min_val = left.min_val / right.max_val;
+                t.min_s = left.min_s + "/"  + (i + 1 != end ? "(" : "") +  right.max_s + (i + 1 != end ? ")" : "");
+            }
+            if (t.max_val < left.max_val / right.min_val) {
+                t.max_val = left.max_val / right.min_val;
+                t.max_s =  left.max_s + "/"  + (i + 1 != end ? "(" : "") + right.min_s + (i + 1 != end ? ")" : "");
+            }
+            
+        }
+        return t;
+    }
+}
