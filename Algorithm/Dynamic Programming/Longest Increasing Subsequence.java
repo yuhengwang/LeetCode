@@ -1,3 +1,4 @@
+// time complexity is O(N2)
 public class Solution {
     /**
      * @param nums: The integer array
@@ -31,5 +32,32 @@ public class Solution {
             res = Math.max(res, t[i]);
         }
         return res;
+    }
+}
+// time complexity is O(NlogN), using binary search, it is also applied in Russian envelope
+public class Solution {
+    /**
+     * @param nums: The integer array
+     * @return: The length of LIS (longest increasing subsequence)
+     */
+    public int longestIncreasingSubsequence(int[] nums) {
+        // write your code here
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        // start from any point, the maximum length until here 
+       int dp[] = new int[nums.length];
+       int len = 0;
+       for(int envelope : nums){
+        int index = Arrays.binarySearch(dp, 0, len, envelope);
+        if (index < 0) {
+            index = -index - 1;
+        }
+        dp[index] = envelope;
+        if (index == len) {
+            len++;
+        }
+        }
+        return len;
     }
 }
