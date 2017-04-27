@@ -1,4 +1,4 @@
-//the state is the best worst case if we have i eggs and the building has j floors. To initialize the state, we can ensure that if the floor
+the state is the best worst case if we have i eggs and the building has j floors. To initialize the state, we can ensure that if the floor
 only have 0 floor or 1 floor, the worst case must 0 or 1, no matter how many eggs we have. And if we only have one egg, the worst case for j floor building
 must be j. After initializing the state, we need to process in loop. Starting from we have 2 eggs and the building has 2 floors, we have two
 conditions to consider. We loop from 1 to j - 1, assume we first drop one egg at kth floor, if the egg break, the problem would be tranferred to
