@@ -1,5 +1,5 @@
 //easy part leetcode 581
-O(N) space O(N) time
+O(N) space O(N + NlogN) time
 public class Solution {
     public int findUnsortedSubarray(int[] nums) {
         int[] copies = Arrays.copyOf(nums, nums.length);
