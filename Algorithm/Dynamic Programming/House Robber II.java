@@ -1,3 +1,8 @@
+//leetcode 213, medium
+Extension for hourse robber, we break the problem into 2 parts, concerning whether to rob the first house or not. If we rob the first house,
+we cannot rob the last one, the valid range of hourse would be from 0 to nums.length - 2, if we do not rob the first house, we can rob the last one,
+so the valid range of the house would be from 1 to nums.length - 1
+    
 public class Solution {
     public int rob(int[] nums) {
          if (nums == null || nums.length == 0) {
