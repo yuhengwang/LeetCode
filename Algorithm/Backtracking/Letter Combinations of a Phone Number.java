@@ -19,3 +19,28 @@ public class Solution {
         }
     }
 }
+
+
+
+public class Solution {
+    final String [] KEY = {"", "", "abc", "def", "ghi", "jkl" , "mno", "pqrs", "tuv", "wxyz"};
+    public List<String> letterCombinations(String digits) {
+        LinkedList<String> res = new LinkedList<>();
+        if (digits == null || digits.length() == 0) {
+            return res;
+        }
+        String ans = "";
+        res.add(ans);
+        for (int i = 0; i < digits.length(); i++) {
+            int x = Character.getNumericValue(digits.charAt(i));
+            while (res.peek().length() == i) {
+                String t = res.remove();
+                String letter = KEY[x];
+                for (int j = 0; j < letter.length(); j++) {
+                    res.add(t + letter.charAt(j));
+                }
+            }
+        }
+        return res;
+    }
+}
