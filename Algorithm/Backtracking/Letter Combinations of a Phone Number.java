@@ -1,3 +1,5 @@
+//we can use an array of string to do the mapping work, the first method is recursive, classic dfs method. The second method use FIFO queue, 
+//similar to bfs
 public class Solution {
     final String [] KEY = {"", "", "abc", "def", "ghi", "jkl" , "mno", "pqrs", "tuv", "wxyz"};
     public List<String> letterCombinations(String digits) {
