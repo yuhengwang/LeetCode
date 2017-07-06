@@ -1,3 +1,5 @@
+//make use of the property of IP address, each element should not longer than 3, so each element can be 1, 2, or 3 length. and we need to
+//omit the element which start with 0 but have more than 1 digit. 
 public class Solution {
     public List<String> restoreIpAddresses(String s) {
         List<String> res = new ArrayList<>();
