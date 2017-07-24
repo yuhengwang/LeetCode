@@ -1,3 +1,4 @@
+//n 相当于数字的位数，但是 
 public class Solution {
     int count = 0;
     public int countNumbersWithUniqueDigits(int n) {
