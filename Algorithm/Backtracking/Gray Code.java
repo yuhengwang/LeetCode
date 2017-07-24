@@ -1,3 +1,35 @@
+// bitwise operation, 1<<n means pow(2,n), and ^ means XOR operation, 
+a = 0011 1100
+
+b = 0000 1101
+
+-----------------
+
+a&b = 0000 1100
+
+a|b = 0011 1101
+
+a^b = 0011 0001
+
+~a  = 1100 0011
+
+public class Solution {
+  public List<Integer> grayCode(int n) {
+    List<Integer> result = new LinkedList<>();
+    for (int i = 0; i < 1<<n; i++) 
+    {
+        System.out.println(i + " " + (i>>1));
+        int num = i ^ (i / 2); // if same, 0 else 1
+        result.add(num);
+     
+    }
+    return result;
+}
+}
+
+
+//traditional method, we select which position to change while checking whether this number already added in the list
+//when the list size arrived at the limit, we can return the list
 public class Solution {
     public List<Integer> grayCode(int n) {
         List<Integer> res = new ArrayList<>();
