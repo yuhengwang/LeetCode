@@ -1,3 +1,9 @@
+Time complexity : O(n*2^n)
+​ For each call to backtrack, it either returns without branching, or it branches into two recursive calls. All these recursive calls form a complete binary recursion tree with 2^n
+​leaves and 2^n −1 inner nodes. For each leaf node, it needs O(n) time for converting builder to String; 
+for each internal node, it needs only constant time. Thus, the total time complexity is dominated by the leaves. In total that is (n2^n)
+
+
 // we need to decide whether we need to abbreviate the character or not, it is better to change the sb to the orginal state, but in this question,
 // only change back to original state after the first dfs is okay.
 USEFULL PATTERN:
