@@ -1,3 +1,26 @@
+ 
+public class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if (coins == null || coins.length == 0 || amount < 1) {
+            return 0;
+        }
+        //state: the minimum number of coins used in get the amount of i
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1); // cannot be Integer.MAX_VALUE, it will have overflow problem
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (i >= coins[j]) {
+                    // use this coin or not
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+}
+
+
 
 Time complexity : O(S∗n). where S is the amount, n is denomination count. 
 In the worst case the recursive tree of the algorithm has height of S and the algorithm solves only S subproblems 
