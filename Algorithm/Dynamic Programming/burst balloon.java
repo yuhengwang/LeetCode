@@ -1,3 +1,9 @@
+instead of divide the problem by the first balloon to burst, we divide the problem by the last balloon to burst.
+
+Why is that? Because only the first and last balloons we are sure of their adjacent balloons before hand!
+
+For the first we have nums[i-1]*nums[i]*nums[i+1] for the last we have nums[-1]*nums[i]*nums[n].
+
 //int[][]dp : the maximum value get from ith to jth balloon, but ith and jth are also considered as potential burst balloon
 public class Solution {
     public int maxCoins(int[] nums) {
