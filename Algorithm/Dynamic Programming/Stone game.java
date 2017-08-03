@@ -1,4 +1,4 @@
-记忆化搜索，从大到小，先考虑最大区间 0 
+记忆化搜索，从大到小，先考虑最大区间 0 - n - 1的融合情况
 public class Solution {
     /**
      * @param A an integer array
@@ -32,10 +32,11 @@ public class Solution {
         }
       
         int min = Integer.MAX_VALUE;
+        //找到造成价值最小的分割点， k，当k等于i时，第一个不被融合，当k等于j  -1时最后一位不被融合
         for (int k = i; k < j; k++) {
             min = Math.min(min, search(dp, visited, i, k, sum) + search(dp, visited, k + 1, j, sum));
         }
-        dp[i][j] = min + sum[j + 1] - sum[i];
+        dp[i][j] = min + sum[j + 1] - sum[i]; //ith 到jth的元素之和
         
         return dp[i][j];
     }
