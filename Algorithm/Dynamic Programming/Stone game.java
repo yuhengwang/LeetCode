@@ -1,4 +1,4 @@
-记忆化搜索，从大到小，先考虑最大区间 0 - n - 1的融合情况
+记忆化搜索，从大到小，先考虑最大区间 0 - n - 1的融合情况，time complextity O(N^3), 枚举了两边和切分点
 public class Solution {
     /**
      * @param A an integer array
