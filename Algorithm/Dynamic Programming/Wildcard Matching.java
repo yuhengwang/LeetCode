@@ -1,3 +1,40 @@
+//optimal solution
+public class Solution {
+    public boolean isMatch(String s, String p) {
+        int sIndex = 0;
+        int pIndex = 0;
+        int start = -1;
+        int match = 0;
+        //abcc
+        //a*c
+        while (sIndex < s.length()) {
+            if (pIndex < p.length() && (s.charAt(sIndex) == p.charAt(pIndex) || p.charAt(pIndex) == '?')) {
+                pIndex++;
+                sIndex++;
+            } else if (pIndex < p.length() && p.charAt(pIndex) == '*') {
+                start = pIndex;
+                match = sIndex;
+                pIndex++;
+// * continuously represent any character in String s, if like abcc, a*c, if program jump out * representation at the first c, it will not //be corrrect. When pIndex reach the end, it will not satisfy the above two conditions, and enter start != -1, to retrieve the previous //state when representation just happened, and make representation represents one more character
+            } else if (start != -1) {
+                pIndex = start + 1;
+                match++;
+                sIndex = match;
+            } else {
+                return false;
+            }
+        }
+    
+        while (pIndex < p.length() && p.charAt(pIndex) == '*') {
+            pIndex++;
+        }
+        return pIndex == p.length();
+    }
+}
+
+
+
+
 public class Solution {
     public boolean isMatch(String s, String p) {
         //state: String s ends at ith character, String p ends at jth character, whether match or not
