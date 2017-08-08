@@ -1,5 +1,5 @@
 想结合same tree的函数，但纠结于找到s的查找起点，想找到t root的值，但其实可以traverse到任何一点来看，只要有true就可以成立
-time complexity O(m *n), m, n is the tree depth of TreeNode s, t
+time complexity O(m *n), m, n is the number of nodes of TreeNode s, t
 space complexity O(n), The depth of the recursion tree can go upto n. n refers to the number of nodes in s.
 /**
  * Definition for a binary tree node.
