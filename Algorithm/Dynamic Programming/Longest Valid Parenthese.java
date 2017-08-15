@@ -1,3 +1,38 @@
+time complexity O(n), space O(1)
+public class Solution {
+    public int longestValidParentheses(String s) {
+        //left right, two pointer
+        int left = 0, right = 0, max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') left++;
+            else right++;
+            if (left == right) {
+                max = Math.max(max, 2 * left);
+            }
+            if (right > left) {
+                right = 0;
+                left = 0;
+            }
+        }
+        left = 0;
+        right = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == ')') right++;
+            else left++;
+            if (left == right) {
+                max = Math.max(max, 2 * right);
+            }
+            if (left > right) {
+                right = 0;
+                left = 0;
+            }
+        }
+        return max;
+    }
+}
+
+
+
 //how long the length of valid parenthese ends at index i
 public class Solution {
     public int longestValidParentheses(String s) {
