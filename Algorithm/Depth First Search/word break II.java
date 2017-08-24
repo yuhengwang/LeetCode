@@ -1,4 +1,33 @@
-//in case of TLE, we create two boolean matrix to check whether s.substring(i, j) is a word, and whether it is possible to 
+Concise solution, we use HashMap to store temporary result
+class Solution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        return dfs(s, wordDict, new HashMap<String, LinkedList<String>>());
+    }
+    public List<String> dfs(String s, List<String> wordDict, HashMap<String, LinkedList<String>> map) {
+        if (map.containsKey(s)) {
+            return map.get(s);
+        }
+        LinkedList<String> res = new LinkedList<>();
+        // when it comes to the end of string
+        if (s.length() == 0) {
+            res.add("");
+            return res;
+        }
+        for (String word : wordDict) {
+            if (s.startsWith(word)) {
+                List<String> temp = dfs(s.substring(word.length()), wordDict, map);
+                for (String t : temp) {
+                    res.add(word + (t.equals("") ? "" : " " + t));
+                }
+            }
+        }
+        map.put(s, res);
+        return res;
+    }
+}
+
+
+in case of TLE, we create two boolean matrix to check whether s.substring(i, j) is a word, and whether it is possible to 
 partition at ith position. 
 
 class Solution {
