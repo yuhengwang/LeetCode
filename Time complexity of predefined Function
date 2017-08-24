@@ -1,0 +1,215 @@
+For updated information, please refer the repository mentioned in the link:
+https://github.com/nkatre/TimeComplexityOfPredefinedMethodsInJava
+
+***************************************************************************************************
+I. Time Complexity of substring() method in Java String class 
+***************************************************************************************************
+
+Question: What is the time complexity of the following program ?
+
+public static void calculateTimeComplexity(String s){
+  for(int i=0;i<s.length();i++){
+    for(int j=i;j>=0;j--){
+      System.out.println(s.substring(j,i+1));
+    }
+  }
+}
+
+Options: 1. O(n^2)
+         2. O(n^3)
+where n = length of the string
+
+
+Solution:
+
+Answer is option 2. O(n^3)
+
+Source: http://stackoverflow.com/questions/4679746/time-complexity-of-javas-substring
+        http://stackoverflow.com/questions/16123446/java-7-string-substring-complexity
+        http://stackoverflow.com/questions/25514062/what-is-the-time-complexity-of-java-stringbuilder-substring-method-if-it-is-l
+
+Explanation:
+It was O(1) in older versions of Java - as Jon stated, it just created a new String with the same underlying char[],
+and a different offset and length.
+However, this has actually changed started with Java 7 update 6.
+The char[] sharing was eliminated, and the offset and length fields were removed. substring() now just copies all the 
+characters into a new String.
+Ergo, substring is O(n) in Java 7 update
+
+
+***************************************************************************************************
+II. Time Complexity of Arrays.sort() and Collections.sort() static methods
+***************************************************************************************************
+Source: http://stackoverflow.com/questions/4254122/what-is-the-time-complexity-of-this-sort-method?rq=1
+Solution: The time complexity of this predefined method of Arrays class and Collections class is nlgn
+
+***************************************************************************************************
+III. Time Complexity of toCharArray() and toString() methods in JAVA
+***************************************************************************************************
+Source: http://stackoverflow.com/questions/13079261/what-is-the-runtime-of-tochararray-and-tostring-in-java
+Solution:
+As far as String.toCharArray() goes, it's O(N), where N is the number of characters in the string,
+because each character must be copied into the output.
+
+***************************************************************************************************
+IV. Time Complexity of reverse() method of StringBuilder and StringBuffer class in JAVA
+***************************************************************************************************
+NOTE: reverse() method is an instance method of StringBuilder class AND
+reverse() method is also an instance synchronized method of StringBuffer class in JAVA
+
+PLEASE NOTE THAT reverse() method is NOT PRESENT in String class of JAVA. The reason being String class
+in JAVA is immutable. However, for some reason substring() method is present in String class even though String 
+is immutable in JAVA. Also StringBuilder and StringBuffer classes each have substring() method.
+
+Source: http://stackoverflow.com/questions/19814067/time-complexity-of-stringbuilder-reverse-method
+Solution: It is O(n). It is impossible to revert a String in less than O(n)
+
+***************************************************************************************************
+V. Time Complexity of indexOf() method of String class
+***************************************************************************************************
+Source: http://stackoverflow.com/questions/12752274/java-indexofstring-str-method-complexity
+The complexity of Java's implementation of indexOf is O(m*n) where n and m are the length of the search string
+and pattern respectively.
+What you can do to improve complexity is to use e.g., the Boyer-More algorithm to intelligently skip comparing
+logical parts of the string which cannot match the pattern.
+
+
+***************************************************************************************************
+V. Time Complexity of class ArrayList methods time complexity
+***************************************************************************************************
+Source: http://stackoverflow.com/questions/6540511/time-complexity-for-java-arraylist
+The size, isEmpty, get, set, iterator, and listIterator operations run in constant time. 
+The add operation runs in amortized constant time, that is, adding n elements requires O(n) time.  O(n) because,
+once the array is full(i.e. ArrayList is full), the array is copied to different location which has high memory,
+this copying of all the elements due to insufficient space causes (n) operation. Hence on an average,
+the time complexity is O(n), but if this case is avoided then the time complexity is O(1), similar to array addition
+operation.
+All of the other operations run in linear time (roughly speaking).
+The constant factor is low compared to that for the LinkedList implementation.
+
+***************************************************************************************************
+V. Time Complexity for Lists, Maps and Set Classes. (more specifically, ArrayList, HashSet and HashMap) methods 
+***************************************************************************************************
+Source: http://www.acnenomor.com/2331736p1/time-complexity-of-hashmap-methods
+    remove: O(1) [method of List, Set, Map classes]
+    size: O(1)  [method of List, Set, Map classes]
+    values: O(n) (on traversal through iterator) [method of Map class]
+    contains: O(1) [method of HashSet] {uses hash function}
+    contains: O(n) [method of ArrayList] {to understand this, please understand first how ArrayList works internally.
+    ArrayList does not contain any hash method. Its actually an array as its name suggests}
+    How does ArrayList work internally ?
+    Ans: http://stackoverflow.com/questions/3467965/how-does-arraylist-work
+    containsKey: O(1) [method of HashMap]
+    {Source: http://stackoverflow.com/questions/8923251/what-is-the-time-complexity-of-hashmap-containskey-in-java}
+    containsValue: O(n) [method of HashMap] {since hash function only exists for key and not value,
+    hence it has to iterate through all elements of the HashMap to find the value. Hence O(n) operation
+    Source: http://stackoverflow.com/questions/16757359/what-is-the-time-complexity-of-hashmap-containsvalue-in-java}
+                    
+VERY VERY HELPFUL TABLE OF TIME COMPLEXITY ANALYSIS:
+http://www.c-sharpcorner.com/UploadFile/0f68f2/comparative-analysis-of-list-hashset-and-sortedset/
+
+I think that remove() will be the same complexity as get(), O(1), assuming we don't have a giant HashMap with equal
+hashCodes, etc etc...
+For size() i'd also assume O(1), since a HashSet, which also has no order, has a size() method with complexity O(1).
+The one i have no idea of is values() - I'm not sure whether this method will just somehow "copy" the HashMap,
+giving a time complexity of O(1), or if it will have to iterate over the HashMap, making the complexity equal
+to the amount of elements stored in the HashMap.
+
+***************************************************************************************************
+VI. Time Complexity for different Collection Classes
+***************************************************************************************************
+VERY VERY IMP Source: http://www.javaexperience.com/time-complexity-of-collection-classes/
+
+Java ArrayList time complexity :
+
+Read/Search any element O(n). If you know the index then the complexity is O(1)
+Update : O(n)
+Delete at beginning: O(n)
+Delete in middle: O(n)
+Delete at end: O(n)
+Add at beginning: O(n)
+Add in middle: O(n)
+Add at end: O(n)
+
+Linked List time complexity : It has elements linked in one direction so as to provide ordered iteration
+of elements.
+
+Read/Search any element O(n)
+Update : O(n)
+Delete at beginning: O(1)
+Delete in middle: O(n)
+Delete at end: O(n)
+Add at beginning: O(1)
+Add in middle: O(n)
+Add at end: O(n)
+
+HashMap time complexity : The elements are placed randomly as per the hashcode. Here the assumption is
+that a good implementation of hashcode has been provided.
+
+Read/Search any element O(1)
+Update : O(1)
+Delete : O(1)
+Add : O(1)
+
+LinkedHashMap time complexity : The elements are placed randomly as with HashMap but are linked together 
+to provide ordered iteration of elements.
+
+Read/Search any element O(1)
+Update : O(1)
+Delete : O(1)
+Add at beginning: O(1)
+Add in middle: O(n)
+Add at end: O(n)
+
+HashSet time complexity : The elements are distributed randomly in memory using their hashcode. Here also 
+the assumption is that good hashcode which generated unique hashcode for different objects has been provided.
+
+Read/Search any element O(1)
+Update : O(1)
+Delete : O(1)
+Add : O(1)
+
+LinkedHashSet time complexity : It is same as HashSet with the addition of links between the elements of the Set.
+
+Read/Search any element O(1)
+Update : O(1)
+Delete : O(1)
+Add at beginning: O(1)
+Add in middle: O(n)
+Add at end: O(n)
+
+TreeMap time complexity : Provides natural sorting of elements. Uses equals, compare and compareTo methods
+to determine the sorting order.
+
+Read/Search any element O(log n)
+Update : O(log n)
+Delete : O(log n)
+Add : O(log n)
+
+TreeSet time complexity : Internally used an instances of TreeMap with the elements as key and a dummy 
+value for all entries in the TreeMap.
+
+Read/Search any element O(log n)
+Update : O(log n)
+Delete : O(log n)
+Add : O(log n)
+
+***************************************************************************************************
+VII. Time Complexity of charAt() and deleteCharAt()
+***************************************************************************************************
+Question:
+I've been wondering about the implementation of charAt function for String/StringBuilder/StringBuffer
+in java what is the coomplexity of that ? also what about the deleteCharAt() in StringBuffer/StringBuilder ?
+Source: http://stackoverflow.com/questions/6461402/java-charat-and-deletecharat-performance
+Solution: 
+The charAt method is O(1).
+The deleteCharAt method on StringBuilder and StringBuffer is O(N) on average, assuming you are deleting a
+random character from an N character StringBuffer / StringBuilder. (It has to move, on average, 
+half of the remaining characters to fill up the "hole" left by the deleted character.
+There is no amortization over multiple operations; see below.) However, if you delete the last character,
+the cost will be O(1).
+There is no deleteCharAt method for String.
+For String, StringBuffer, and StringBuilder, charAt() is a constant-time operation.
+For StringBuffer and StringBuilder, deleteCharAt() is a linear-time operation.
+StringBuffer and StringBuilder have very similar performance characteristics.
+The primary difference is that the former is synchronized (so is thread-safe) while the latter is not.
