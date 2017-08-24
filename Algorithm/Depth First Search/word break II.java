@@ -1,4 +1,9 @@
 Concise solution, we use HashMap to store temporary result
+time complexity O(n3) 
+Size of recursion tree can go up to n^2 The creation of list takes n time.
+space complexity O(n3)
+The depth of the recursion tree can go up to n and each activation record can contains a string list of size n(n * n).
+
 class Solution {
     public List<String> wordBreak(String s, List<String> wordDict) {
         return dfs(s, wordDict, new HashMap<String, LinkedList<String>>());
