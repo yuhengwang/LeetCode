@@ -1,0 +1,18 @@
+char charAt(int index)
+int compareTo(String anotherString)// lexicographically
+int compareToIgnoreCase(String str)
+String copyValueOf(char[] data)
+String copyValueOf(char[] data, int offset, int count)
+boolean endsWith(String suffix)
+int indexOf(int ch)
+int index(int ch, int fromIndex)
+int indexOf(String str)
+int indexOf(String str, int fromIndex)
+//lastIndexOf
+boolean matches(String regex)
+String replace(char oldChar, char newChar)
+String replaceAll(String regex, String replacement)
+String replaceFirst(String regex, String replacement)
+boolean startsWith(String prefix)
+boolean startsWith(String predix, int offeset)
+
