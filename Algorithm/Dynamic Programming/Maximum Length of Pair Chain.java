@@ -1,4 +1,14 @@
 //longest increasing sequence 变种
+经典loop
+ for (int i = 1; i < nums.length; i++) {
+      
+            for (int j = 0; j < i; j++) {
+            
+            }
+         
+        }
+        
+
 class Solution {
     public int findLongestChain(int[][] pairs) {
         if (pairs == null || pairs.length == 0 || pairs[0] == null || pairs[0].length == 0) {
