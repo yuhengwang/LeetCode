@@ -1,0 +1,21 @@
+class Solution {
+    public int getMoneyAmount(int n) {
+         //找划分点,区间型
+        int[][] table = new int[n + 1][n + 1];
+        return dp(table, 1, n);   
+    }
+    public int dp(int[][] table, int s, int e) {
+    处理不合理情况
+        if (s >= e)  return 0;
+        if (table[s][e] != 0)   return table[s][e];
+        int res = Integer.MAX_VALUE;
+        划分区间标准模板！x要等于两边边界。
+        for (int x = s; x <= e; x++) {
+            int temp = x + Math.max(dp(table, x + 1, e), dp(table, s, x - 1));
+            res = Math.min(res, temp);
+        }
+        table[s][e] = res;
+        return res;
+        
+    }
+}
