@@ -1,5 +1,5 @@
 The important thing is to consider all edge cases while thinking this problem through, including: negative integer, possible overflow, etc.
-
+XOR 奇数个true，最终会return true
 class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
         if (numerator == 0) return "0";
