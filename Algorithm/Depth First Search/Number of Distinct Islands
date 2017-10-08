@@ -1,0 +1,37 @@
+Number of island!!, count of the island... or max area of island, !! and this is how many distinct island,
+how to represent a island is the key!
+here we use the relative coordinate to the left up corner to represent each island. and put all island into set.
+For hashset, for it compared its element, it will call arraylist equals method, and in arraylist equal method, it means all elements should be
+same
+
+class Solution {
+    int m;
+    int n;
+    int[][] d = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public int numDistinctIslands(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+        m = grid.length;
+        n = grid[0].length;
+        Set<List<List<Integer>>> islands = new HashSet<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                List<List<Integer>> res = new ArrayList<>();
+                if (dfs(res, grid, i, j, i, j))
+                    islands.add(res);
+            }
+        }
+                
+        return islands.size();
+    }
+    public boolean dfs(List<List<Integer>> res, int[][] grid, int i0, int j0, int i, int j) {
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] <= 0)  return false;
+        res.add(Arrays.asList(i - i0, j - j0));
+        grid[i][j] *= -1;
+        for (int [] dir : d) {
+            dfs(res, grid, i0, j0, i + dir[0], j + dir[1]);
+        }
+        return true;
+    }
+}
