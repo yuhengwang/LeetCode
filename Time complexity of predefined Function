@@ -120,28 +120,54 @@ VI. Time Complexity for different Collection Classes
 ***************************************************************************************************
 VERY VERY IMP Source: http://www.javaexperience.com/time-complexity-of-collection-classes/
 
+Operation	                    Array	ArrayList	[Singly] Linked List
+Read (any where)	              O(1)	O(1)	O(n)
+Add/Remove at end	              O(1)	O(1)	O(n)
+Add/Remove in the interior	    O(n)	O(n)	O(n)
+Resize	                        O(n)	N/A	N/A
+Find By position	              O(1)	O(1)	O(n)
+Find By target (value)	        O(n)	O(n)	O(n)
+
+Array:
+-------------------
+1- Excessive read, as time complexity of read is always O(1) 
+2- Random access to element using index: if you 
+
+ ArrayList:
+-------------------1- Excessive read 
+2- Random access to elements using their index
+3- More flexible in coding
+4- Effective use of memory space as items get allocated as needed
+
+LinkedList:
+------------------- 
+1- Effective use of memory space as items get allocated as needed
+2- Excessive Add/Remove of elements (It's better than ArrayList, because since array list items get stored in memory 
+in adjacent place. when adding a new element in the middle of the array list, all  the items after the inserted one have
+to be shifted, with Linked list the new item gets injected in the list without the need to shift the other items as they 
+are not adjacent in the memory)
 Java ArrayList time complexity :
 
 Read/Search any element O(n). If you know the index then the complexity is O(1)
 Update : O(n)
 Delete at beginning: O(n)
 Delete in middle: O(n)
-Delete at end: O(n)
+Delete at end: O(1)
 Add at beginning: O(n)
 Add in middle: O(n)
-Add at end: O(n)
+Add at end: O(1)
 
 Linked List time complexity : It has elements linked in one direction so as to provide ordered iteration
 of elements.
-
+// doubly linked list:The remove operation in LinkedList is O(1) only if you remove element which is at any of two ends of linked list.
 Read/Search any element O(n)
 Update : O(n)
 Delete at beginning: O(1)
 Delete in middle: O(n)
-Delete at end: O(n)
+Delete at end: O(1)
 Add at beginning: O(1)
 Add in middle: O(n)
-Add at end: O(n)
+Add at end: O(1)
 
 HashMap time complexity : The elements are placed randomly as per the hashcode. Here the assumption is
 that a good implementation of hashcode has been provided.
@@ -193,6 +219,14 @@ Read/Search any element O(log n)
 Update : O(log n)
 Delete : O(log n)
 Add : O(log n)
+
+
+PriorityQueue
+poll()    o(log n)
+offer()   o(log n)
+peek()    o(1)
+remove()
+contain() o(n)
 
 ***************************************************************************************************
 VII. Time Complexity of charAt() and deleteCharAt()
