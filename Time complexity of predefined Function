@@ -247,3 +247,4 @@ For String, StringBuffer, and StringBuilder, charAt() is a constant-time operati
 For StringBuffer and StringBuilder, deleteCharAt() is a linear-time operation.
 StringBuffer and StringBuilder have very similar performance characteristics.
 The primary difference is that the former is synchronized (so is thread-safe) while the latter is not.
+String: startsWith: O(n)
